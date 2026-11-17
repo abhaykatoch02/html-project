@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 240" preserveAspectRatio="none">
+  <!-- Left glowing vertical taper line -->
+  <rect x="20" y="24" width="2.5" height="194" rx="1.25" fill="#ffffff" opacity="0.88"/>
+  <!-- Bottom gold S-curve wave -->
+  <path d="M0 232 C 120 242, 260 236, 355 202 C 425 177, 485 215, 560 240" stroke="#d5a660" stroke-width="1.5" fill="none" opacity="0.78"/>
+  <!-- Right botanical leaf accents -->
+  <g fill="#071a3e" opacity="0.82" transform="translate(1030, 145)">
+    <path d="M90 95 C 58 72, 34 44, 24 14 C 54 32, 76 58, 90 95 Z"/>
+    <path d="M90 95 C 52 86, 22 76, 0 58 C 32 58, 62 70, 90 95 Z"/>
+    <path d="M90 74 C 74 44, 68 18, 72 -8 C 86 18, 92 46, 90 74 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="skyBase" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#bfcfe7"/>
+      <stop offset="32%" stop-color="#e3eaf4"/>
+      <stop offset="68%" stop-color="#f1e7d8"/>
+      <stop offset="100%" stop-color="#c8d7ee"/>
+    </linearGradient>
+    <linearGradient id="warmWave" x1="0" y1="0" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#f8f0e3" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#f2e5d2" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#dbe6f6" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="navySweep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#143774"/>
+      <stop offset="100%" stop-color="#061636"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="900" fill="url(#skyBase)"/>
+  <!-- Top right champagne silk folds -->
+  <path d="M430 0 C 590 78, 790 12, 1060 66 L 1280 0 Z" fill="#f5ede0" opacity="0.78"/>
+  <path d="M680 0 C 830 58, 1020 18, 1280 72 L 1280 0 Z" fill="#ebe0ce" opacity="0.62"/>
+  <!-- Center warm cream wave -->
+  <path d="M0 285 C 340 235, 720 355, 1280 250 L 1280 770 C 900 830, 440 720, 0 840 Z" fill="url(#warmWave)"/>
+  <!-- Bottom right layered blue & navy waves -->
+  <path d="M690 900 C 865 840, 1065 800, 1280 715 L 1280 900 Z" fill="#89a7d8" opacity="0.48"/>
+  <path d="M760 900 C 930 852, 1110 828, 1280 775 L 1280 900 Z" fill="url(#navySweep)"/>
+  <path d="M830 900 C 990 870, 1140 858, 1280 832" stroke="#d7a963" stroke-width="1.6" fill="none" opacity="0.72"/>
+  <!-- Bottom left botanical leaf silhouette -->
+  <g fill="#153875" opacity="0.86" transform="translate(4, 830)">
+    <path d="M0 70 C 12 42, 34 24, 54 16 C 38 40, 22 56, 0 70 Z"/>
+    <path d="M4 70 C 28 54, 56 48, 76 50 C 54 64, 28 70, 4 70 Z"/>
+    <path d="M0 52 C 4 28, 14 10, 26 0 C 24 20, 14 38, 0 52 Z"/>
+  </g>
+</svg>

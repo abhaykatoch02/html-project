@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90">
+  <defs>
+    <linearGradient id="goldUpper" x1="15%" y1="15%" x2="85%" y2="85%">
+      <stop offset="0%" stop-color="#fffdf4"/>
+      <stop offset="45%" stop-color="#fde5a6"/>
+      <stop offset="100%" stop-color="#e3a646"/>
+    </linearGradient>
+    <linearGradient id="goldLower" x1="15%" y1="20%" x2="90%" y2="85%">
+      <stop offset="0%" stop-color="#f7ce77"/>
+      <stop offset="55%" stop-color="#df9a35"/>
+      <stop offset="100%" stop-color="#a86614"/>
+    </linearGradient>
+    <linearGradient id="goldStem" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c98627"/>
+      <stop offset="55%" stop-color="#f7d382"/>
+      <stop offset="100%" stop-color="#fff8df"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Upper Bright Gold-Cream Vane with Natural Feather Notches -->
+  <path d="M88 8
+           C72 13, 59 21, 51 29
+           L54 23
+           C44 31, 35 41, 31 50
+           L34 43
+           C26 52, 23 62, 25 71
+           L88 8 Z"
+        fill="url(#goldUpper)"/>
+
+  <!-- Lower Rich Metallic Gold Vane with Barbs -->
+  <path d="M88 8
+           L25 71
+           C36 73, 49 71, 61 63
+           L51 64
+           C62 59, 71 50, 77 40
+           L66 44
+           C75 36, 83 23, 88 8 Z"
+        fill="url(#goldLower)"/>
+
+  <!-- Lower Detached Feather Plume Accent -->
+  <path d="M27 72
+           C38 76, 52 75, 65 65
+           C54 68, 40 69, 29 69 Z"
+        fill="#cc8828"/>
+
+  <!-- Central Quill Shaft (Rachis) -->
+  <path d="M15 82 C33 63, 58 38, 88 8"
+        fill="none"
+        stroke="url(#goldStem)"
+        stroke-width="3.2"
+        stroke-linecap="round"/>
+
+  <!-- Subtle Dark Bronze Separation Groove Along Shaft -->
+  <path d="M25 71 C43 53, 64 32, 87 9"
+        fill="none"
+        stroke="#6e4108"
+        stroke-width="1.1"
+        stroke-opacity="0.65"/>
+</svg>

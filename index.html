@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsroomFlow - Smart Newsroom Workflow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- 1. LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo" onclick="showPage('dashboard')">
+        <img src="assets/quill-logo.svg" alt="NewsroomFlow Logo">
+        <h1>NewsroomFlow</h1>
+        <p>Bring Stories to Life</p>
+      </div>
+      <nav class="menu">
+        <button class="menu-btn active" id="nav-dashboard" onclick="showPage('dashboard')">
+          <i class="home-icon"></i>
+          Dashboard
+        </button>
+        <button class="menu-btn" id="nav-submit" onclick="showPage('submit')">
+          <i class="send-icon"></i>
+          Submit Story
+        </button>
+        <button class="menu-btn" id="nav-assign" onclick="showPage('assign')">
+          <i class="assign-icon"></i>
+          Assign Journalist
+        </button>
+        <button class="menu-btn" id="nav-stories" onclick="showPage('stories')">
+          <i class="file-icon"></i>
+          My Stories
+        </button>
+        <button class="menu-btn" id="nav-comments" onclick="showPage('comments')">
+          <i class="chat-icon"></i>
+          My Comments
+        </button>
+      </nav>
+      <div class="spacer"></div>
+      <div class="sidebar-quote">
+        <p>
+          Where every story gets
+          <br>
+          the treatment it deserves.
+        </p>
+        <span>(And every sponsor gets a say) ✨</span>
+      </div>
+    </aside>
+
+    <!-- 2. MAIN WORKSPACE -->
+    <div class="main-area" id="mainArea">
+      <header class="topbar">
+        <div class="search-bar">
+          <i class="search-icon"></i>
+          <input type="text" id="searchInput" placeholder="Search stories..." onkeyup="searchStories()">
+        </div>
+        <div class="profile-box">
+          <div class="profile-btn" onclick="toggleProfileMenu()" title="Switch Role & Options">
+            <img src="assets/profile-circle.png" alt="Chief Editor">
+            <i class="down-icon"></i>
+          </div>
+          <div class="dropdown-menu" id="profileMenu" hidden>
+            <label>Active Role:</label>
+            <select id="roleSelect" onchange="changeRole()">
+              <option>Chief Editor</option>
+              <option>Editor</option>
+              <option>Journalist</option>
+            </select>
+            <button onclick="showPage('assign')">
+              <i class="assign-icon"></i>
+              Assign Journalist
+            </button>
+            <button onclick="showPage('workflow')">
+              <i class="layers-icon"></i>
+              Workflow Board
+            </button>
+            <button class="danger-text" onclick="resetDemoData()">
+              <i class="reset-icon"></i>
+              Reset Demo Data
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero-banner" id="heroBanner">
+        <div class="hero-content">
+          <p class="welcome-text">
+            WELCOME TO NEWSROOMFLOW
+            <span class="line"></span>
+          </p>
+          <h2>
+            Smart Newsroom Workflow
+            <br>
+            for
+            <span>Modern Journalism</span>
+          </h2>
+          <p class="steps-text">Submit • Assign • Review • Approve • Publish</p>
+          <button class="gold-btn" onclick="showPage('workflow')">
+            Explore Dashboard
+            <i class="arrow-icon"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- 3. DASHBOARD PAGE -->
+      <main id="page-dashboard" class="page">
+        <section class="stats-row">
+          <div class="stat-card gold" onclick="filterFromCard('All')">
+            <i class="icon file-icon"></i>
+            <div>
+              <p>Total Stories</p>
+              <h3>
+                <span id="totalCount">24</span>
+                <small>↑ 12%</small>
+              </h3>
+            </div>
+          </div>
+          <div class="stat-card purple" onclick="showPage('assign')" title="Open Journalist Assignment Desk">
+            <i class="icon users-icon"></i>
+            <div>
+              <p>Assigned Stories</p>
+              <h3>
+                <span id="assignedCount">12</span>
+                <small>↑ 8%</small>
+              </h3>
+            </div>
+          </div>
+          <div class="stat-card green" onclick="filterFromCard('Approved')">
+            <i class="icon check-icon"></i>
+            <div>
+              <p>Approved Stories</p>
+              <h3>
+                <span id="approvedCount">17</span>
+                <small>↑ 15%</small>
+              </h3>
+            </div>
+          </div>
+          <div class="stat-card orange" onclick="filterFromCard('Published')">
+            <i class="icon send-icon"></i>
+            <div>
+              <p>Published Stories</p>
+              <h3>
+                <span id="publishedCount">16</span>
+                <small>↑ 10%</small>
+              </h3>
+            </div>
+          </div>
+        </section>
+
+        <section class="middle-row">
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="quill-icon"></i>
+                Story Submission
+              </h3>
+              <button class="gold-btn small" onclick="openStoryModal()">
+                Submit New
+                <i class="arrow-icon"></i>
+              </button>
+            </div>
+            <div class="submission-box">
+              <img src="assets/story-mic.jpg" alt="News Microphone">
+              <div class="submission-info">
+                <h4>
+                  Share Your Story
+                  <br>
+                  with the World
+                </h4>
+                <p>Submit your news, ideas and stories for review by editors.</p>
+                <button class="dark-btn" onclick="openStoryModal()">
+                  Submit Story
+                  <i class="arrow-icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="layers-icon"></i>
+                Editorial Workflow
+              </h3>
+              <a onclick="showPage('workflow')">
+                View All
+                <i class="arrow-icon"></i>
+              </a>
+            </div>
+            <div class="workflow-row">
+              <div class="step" onclick="showStageInfo('Submitted')">
+                <i class="circle file-icon"></i>
+                <b>Submitted</b>
+                <small>Apr 27, 10:20 AM</small>
+              </div>
+              <div class="arrow-line"></div>
+              <div class="step" onclick="showStageInfo('Under Review')">
+                <i class="circle search-icon"></i>
+                <b>Under Review</b>
+                <small>Apr 27, 11:00 AM</small>
+              </div>
+              <div class="arrow-line"></div>
+              <div class="step" onclick="showStageInfo('Editing')">
+                <i class="circle active edit-icon"></i>
+                <b>Editing</b>
+                <small>Apr 27, 12:30 PM</small>
+              </div>
+              <div class="arrow-line"></div>
+              <div class="step" onclick="showStageInfo('Approved')">
+                <i class="circle sage check-icon"></i>
+                <b>Approved</b>
+                <small>Apr 27, 01:15 PM</small>
+              </div>
+              <div class="arrow-line"></div>
+              <div class="step" onclick="showStageInfo('Published')">
+                <i class="circle send-icon"></i>
+                <b>Published</b>
+                <small>Apr 27, 02:00 AM</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bottom-row">
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="list-icon"></i>
+                Recent Stories
+              </h3>
+              <a onclick="showPage('stories')">
+                View All
+                <i class="arrow-icon"></i>
+              </a>
+            </div>
+            <div class="card-body">
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Assigned To</th>
+                    <th class="right-align">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="recentStoriesBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="chat-icon"></i>
+                Comments
+              </h3>
+              <a onclick="showPage('comments')">
+                View All
+                <i class="arrow-icon"></i>
+              </a>
+            </div>
+            <div class="card-body" id="dashboardComments"></div>
+          </div>
+        </section>
+      </main>
+
+      <!-- 4. SUBMIT STORY PAGE -->
+      <section id="page-submit" class="page" hidden>
+        <div class="card">
+          <div class="card-top">
+            <h3>
+              <i class="quill-icon"></i>
+              Submit a New Story
+            </h3>
+            <a onclick="showPage('dashboard')">← Back to Dashboard</a>
+          </div>
+          <form class="form-box" onsubmit="submitPageForm(event)">
+            <label>Story Headline *</label>
+            <input type="text" id="submitTitle" required placeholder="Enter news headline...">
+            <div class="two-cols">
+              <div>
+                <label>Category</label>
+                <select id="submitCategory">
+                  <option>Economy & Growth</option>
+                  <option>Technology</option>
+                  <option>Sports</option>
+                  <option>National & Politics</option>
+                </select>
+              </div>
+              <div>
+                <label>Priority</label>
+                <select id="submitPriority">
+                  <option>High</option>
+                  <option selected>Medium</option>
+                  <option>Low</option>
+                </select>
+              </div>
+            </div>
+            <div class="two-cols">
+              <div>
+                <label>Assign To</label>
+                <select id="submitWriter">
+                  <option>Amit Singh</option>
+                  <option>Neha Verma</option>
+                  <option>Rohit Sharma</option>
+                  <option>Priya Mehta</option>
+                </select>
+              </div>
+              <div>
+                <label>Cover Image</label>
+                <select id="submitImage">
+                  <option value="assets/thumb-india-growth.jpg">India Growth & Tricolor</option>
+                  <option value="assets/thumb-tech-blue.jpg">Technology & AI</option>
+                  <option value="assets/thumb-sports.jpg">Sports Stadium</option>
+                </select>
+              </div>
+            </div>
+            <label>Full Story Content *</label>
+            <textarea id="submitContent" rows="5" required placeholder="Write your news article here..."></textarea>
+            <div>
+              <button type="submit" class="dark-btn">
+                Submit Story
+                <i class="arrow-icon"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- 5. ASSIGN JOURNALIST PAGE -->
+      <section id="page-assign" class="page" hidden>
+        <div class="card gap-bottom">
+          <div class="card-top">
+            <h3>
+              <i class="users-icon"></i>
+              Newsroom Journalists & Workload
+            </h3>
+            <a onclick="showPage('dashboard')">← Back to Dashboard</a>
+          </div>
+          <div class="card-body">
+            <div class="journalist-grid" id="journalistRoster"></div>
+          </div>
+        </div>
+
+        <div class="middle-row">
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="assign-icon"></i>
+                Assign Story to Journalist
+              </h3>
+            </div>
+            <form class="form-box" onsubmit="assignStoryFromDesk(event)">
+              <label>Select Story</label>
+              <select id="assignStory" onchange="toggleNewAssignmentTitle()"></select>
+              <div id="newAssignBox" hidden>
+                <label>New Assignment Headline *</label>
+                <input type="text" id="assignNewTitle" placeholder="Enter new story headline...">
+              </div>
+              <div class="two-cols">
+                <div>
+                  <label>Select Journalist *</label>
+                  <select id="assignWriter">
+                    <option value="Amit Singh">Amit Singh (Economy)</option>
+                    <option value="Neha Verma">Neha Verma (Tech & AI)</option>
+                    <option value="Rohit Sharma">Rohit Sharma (Sports)</option>
+                    <option value="Priya Mehta">Priya Mehta (National)</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Deadline *</label>
+                  <input type="date" id="assignDate" required>
+                </div>
+              </div>
+              <label>Priority</label>
+              <select id="assignPriority">
+                <option>High</option>
+                <option selected>Medium</option>
+                <option>Low</option>
+              </select>
+              <label>Assignment Instructions *</label>
+              <textarea id="assignNote" rows="3" required placeholder="Write reporting instructions..."></textarea>
+              <div>
+                <button type="submit" class="dark-btn">
+                  Assign to Journalist
+                  <i class="arrow-icon"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="board-icon"></i>
+                Active Assignments
+              </h3>
+            </div>
+            <div class="card-body">
+              <table class="story-table">
+                <thead>
+                  <tr>
+                    <th>Story</th>
+                    <th>Journalist</th>
+                    <th>Deadline</th>
+                    <th>Priority</th>
+                    <th class="right-align">Reassign</th>
+                  </tr>
+                </thead>
+                <tbody id="assignmentsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. MY STORIES PAGE -->
+      <section id="page-stories" class="page" hidden>
+        <div class="card">
+          <div class="card-top">
+            <h3>
+              <i class="file-icon"></i>
+              All Newsroom Stories
+            </h3>
+            <button class="gold-btn small" onclick="openStoryModal()">
+              Submit New
+              <i class="arrow-icon"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="filter-bar">
+              <button class="filter-btn active" onclick="filterStories('All', this)">All</button>
+              <button class="filter-btn" onclick="filterStories('Pending', this)">Pending</button>
+              <button class="filter-btn" onclick="filterStories('Under Review', this)">Under Review</button>
+              <button class="filter-btn" onclick="filterStories('Editing', this)">Editing</button>
+              <button class="filter-btn" onclick="filterStories('Approved', this)">Approved</button>
+              <button class="filter-btn" onclick="filterStories('Published', this)">Published</button>
+              <button class="filter-btn" onclick="filterStories('Draft', this)">Draft</button>
+            </div>
+            <table class="story-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                  <th>Assigned To</th>
+                  <th class="right-align">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="allStoriesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. MY COMMENTS PAGE -->
+      <section id="page-comments" class="page" hidden>
+        <div class="bottom-row">
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="chat-icon"></i>
+                Editorial Discussion Feed
+              </h3>
+              <a onclick="showPage('dashboard')">← Dashboard</a>
+            </div>
+            <div class="card-body" id="allCommentsList"></div>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <h3>
+                <i class="edit-icon"></i>
+                Post a Comment
+              </h3>
+            </div>
+            <form class="form-box" onsubmit="addComment(event)">
+              <label>Post As</label>
+              <select id="commentUser">
+                <option value="Priya Mehta|Editor|assets/avatar-priya.jpg">Priya Mehta (Editor)</option>
+                <option value="Amit Singh|Journalist|assets/avatar-amit.jpg">Amit Singh (Journalist)</option>
+                <option value="Chief Editor|Editor|assets/profile-circle.png">Chief Editor (Editor)</option>
+              </select>
+              <label>Message *</label>
+              <textarea id="commentText" rows="4" required placeholder="Write editor feedback or reply..."></textarea>
+              <div>
+                <button type="submit" class="dark-btn">
+                  Post Comment
+                  <i class="arrow-icon"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. WORKFLOW BOARD PAGE -->
+      <section id="page-workflow" class="page" hidden>
+        <div class="card gap-bottom">
+          <div class="card-top">
+            <h3>
+              <i class="layers-icon"></i>
+              Complete Editorial Workflow Pipeline
+            </h3>
+            <a onclick="showPage('dashboard')">← Back to Dashboard</a>
+          </div>
+          <div class="card-body">
+            <div class="workflow-board" id="workflowBoard"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <h3>
+              <i class="news-icon"></i>
+              Live Published & Approved News
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="published-grid" id="publishedGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM MEMBERS FOOTER -->
+      <footer class="team-footer">
+        <p class="team-title">Project Team Members:</p>
+        <span class="member-badge">Abhay Katoch</span>
+        <span class="member-badge">Kishore</span>
+        <span class="member-badge">Aditi</span>
+        <span class="member-badge">Parvat</span>
+        <span class="member-badge">Abhyjoit Singh</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- 9. POPUP BOXES (MODALS) -->
+  <div class="popup" id="storyModal" hidden>
+    <div class="popup-box">
+      <div class="card-top">
+        <h3 id="modalHeading">Submit New Story</h3>
+        <button class="close-btn" onclick="closeStoryModal()">×</button>
+      </div>
+      <form class="form-box" onsubmit="saveStoryModal(event)">
+        <input type="hidden" id="editIndex" value="-1">
+        <label>Story Title *</label>
+        <input type="text" id="popupTitle" required placeholder="Enter headline...">
+        <div class="two-cols">
+          <div>
+            <label>Status</label>
+            <select id="popupStatus">
+              <option>Pending</option>
+              <option>Under Review</option>
+              <option>Editing</option>
+              <option>Approved</option>
+              <option>Published</option>
+              <option>Draft</option>
+            </select>
+          </div>
+          <div>
+            <label>Priority</label>
+            <select id="popupPriority">
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="two-cols">
+          <div>
+            <label>Assigned To *</label>
+            <input type="text" id="popupWriter" required value="Amit Singh">
+          </div>
+          <div>
+            <label>Thumbnail</label>
+            <select id="popupImage">
+              <option value="assets/thumb-india-growth.jpg">India Growth & Tricolor</option>
+              <option value="assets/thumb-tech-blue.jpg">Technology & AI</option>
+              <option value="assets/thumb-sports.jpg">Sports Stadium</option>
+            </select>
+          </div>
+        </div>
+        <label>Story Summary / Body *</label>
+        <textarea id="popupContent" rows="4" required placeholder="Write story details..."></textarea>
+        <div class="popup-buttons">
+          <button type="button" class="gray-btn" onclick="closeStoryModal()">Cancel</button>
+          <button type="submit" class="dark-btn">Save Story</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup" id="viewModal" hidden>
+    <div class="popup-box">
+      <div class="card-top">
+        <h3 id="previewTitle">Story Preview</h3>
+        <button class="close-btn" onclick="closeViewModal()">×</button>
+      </div>
+      <div id="previewBody" class="form-box"></div>
+    </div>
+  </div>
+
+  <div class="popup" id="assignModal" hidden>
+    <div class="popup-box">
+      <div class="card-top">
+        <h3>
+          <i class="assign-icon"></i>
+          Reassign Journalist
+        </h3>
+        <button class="close-btn" onclick="closeAssignModal()">×</button>
+      </div>
+      <form class="form-box" onsubmit="saveQuickAssign(event)">
+        <input type="hidden" id="quickIndex" value="0">
+        <p class="story-note">
+          Story:
+          <b id="quickTitle"></b>
+        </p>
+        <label>Assign To Journalist *</label>
+        <select id="quickWriter">
+          <option value="Amit Singh">Amit Singh (Economy)</option>
+          <option value="Neha Verma">Neha Verma (Technology & AI)</option>
+          <option value="Rohit Sharma">Rohit Sharma (Sports)</option>
+          <option value="Priya Mehta">Priya Mehta (National)</option>
+        </select>
+        <div class="two-cols">
+          <div>
+            <label>Deadline</label>
+            <input type="date" id="quickDate" required>
+          </div>
+          <div>
+            <label>Priority</label>
+            <select id="quickPriority">
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+        </div>
+        <label>Editor Note</label>
+        <textarea id="quickNote" rows="3" placeholder="Optional instructions for journalist..."></textarea>
+        <div class="popup-buttons">
+          <button type="button" class="gray-btn" onclick="closeAssignModal()">Cancel</button>
+          <button type="submit" class="dark-btn">Confirm Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastMsg" class="toast" hidden></div>
+  <script src="script.js"></script>
+</body>
+</html>

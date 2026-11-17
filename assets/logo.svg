@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Exact fountain pen nib matching reference logo: white body wings + faceted sky-blue tip at top-right -->
+  <!-- Left white wing -->
+  <polygon points="14,54 21,31 37,16 43,22 29,36" fill="#FFFFFF"/>
+  <!-- Right white wing -->
+  <polygon points="14,54 29,36 43,22 49,28 38,43" fill="#F4F8FF"/>
+  <!-- Top-right upper light sky-blue facet -->
+  <polygon points="37,16 43,11 55,9 43,22" fill="#9EC7FF"/>
+  <!-- Top-right lower medium sky-blue facet -->
+  <polygon points="43,22 55,9 49,28" fill="#5D9DF8"/>
+  <!-- Nib slit & shield breather hole -->
+  <line x1="14.5" y1="53.5" x2="28.5" y2="36.5" stroke="#031338" stroke-width="2.3" stroke-linecap="round"/>
+  <path d="M26.5 34.5 L30.5 31.5 L33 34 L30 38 Z" fill="#031338"/>
+</svg>
